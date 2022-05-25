@@ -7,13 +7,13 @@
 using namespace std;
 
 int main() {
-    vector<int> v(3);
-    iota(v.begin(), v.end(), 1);
     vector<Edge> edges;
+    edges.push_back({0, 1, 3});
     edges.push_back({1, 2, 1});
-    edges.push_back({2, 3, 1});
+    edges.push_back({0, 2, 1});
 
-    cout << MST_Kruskal(Graph{v, edges}) << '\n';
-    cout << MST_Prim(Graph{v, edges}) << '\n';
-    cout << MST_Boruvka(Graph{v, edges}) << '\n';
+    cout << MST_Kruskal(Graph{3, edges}) << '\n';
+    cout << MST_PrimSlow(Graph{3, edges}) << '\n';
+    cout << MST_PrimFast(Graph{3, edges}) << '\n';
+    cout << MST_Boruvka(Graph{3, edges}) << '\n';
 }
