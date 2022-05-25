@@ -1,6 +1,7 @@
 #ifndef PRIM_H
 #define PRIM_H
 #include "../types/graph.h"
+#include "../helper/timer.h"
 struct PrimeEdge {
     int weight = INF, to = -1;
     bool operator<(PrimeEdge const& other) const {
@@ -8,7 +9,7 @@ struct PrimeEdge {
     }
 };
 
-long long MST_PrimSlow(const Graph& g) {
+long long _MST_PrimSlow(const Graph& g) {
     int n = g.n;
     vector<bool> selected(n, false);
     vector<PrimeEdge> min_e(n);
@@ -42,7 +43,7 @@ long long MST_PrimSlow(const Graph& g) {
 
     return ans;
 }
-long long MST_PrimFast(const Graph& g) {
+long long _MST_PrimFast(const Graph& g) {
     int n = g.n;
     long long ans = 0;
     vector<PrimeEdge> min_e(n);
@@ -75,5 +76,21 @@ long long MST_PrimFast(const Graph& g) {
     }
 
     return ans;
+}
+
+
+long long MST_PrimSlow(const Graph& g, Timer &timer) {
+    if (g.n > 50000) {
+        return -1;
+    }
+    timer.start();
+    _MST_PrimSlow(g);
+    return timer.getRunningTime();
+}
+
+long long MST_PrimFast(const Graph& g, Timer &timer) {
+    timer.start();
+    _MST_PrimFast(g);
+    return timer.getRunningTime();
 }
 #endif

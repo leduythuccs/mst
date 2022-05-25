@@ -1,6 +1,8 @@
 #ifndef BORUVKA_H
 #define BORUVKA_H
 #include "../types/graph.h"
+#include "../helper/timer.h"
+
 struct BoruvkaEdge {
     int u, v, w, id;
     bool operator<(BoruvkaEdge const& other) const {
@@ -9,7 +11,7 @@ struct BoruvkaEdge {
     }
 };
 
-long long MST_Boruvka(const Graph& g) {
+long long _MST_Boruvka(const Graph& g) {
     vector<BoruvkaEdge> edges;
     edges.reserve(g.edges.size());
     int cnt = 0;
@@ -70,5 +72,12 @@ long long MST_Boruvka(const Graph& g) {
         if (used[i]) ans += g.edges[i].weight;
     }
     return ans;
+}
+
+
+long long MST_Boruvka(const Graph& g, Timer &timer) {
+    timer.start();
+    _MST_Boruvka(g);
+    return timer.getRunningTime();
 }
 #endif
