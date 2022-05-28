@@ -19,9 +19,10 @@ long long _MST_Kruskal(const Graph& g) {
     return ans;
 }
 
-long long MST_Kruskal(const Graph& g, Timer &timer) {
+long long MST_Kruskal(const Graph& g, Timer &timer, int t = 1) {
     timer.start();
-    _MST_Kruskal(g);
-    return timer.getRunningTime();
+    for (int i = 1; i <= t; ++i)
+        _MST_Kruskal(g);
+    return timer.getRunningTime() / t;
 }
 #endif

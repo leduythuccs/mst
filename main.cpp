@@ -35,7 +35,7 @@ vector<long long> handle(int n, int m, int type) {
     // cout << "MST_PrimFast: " << MST_PrimFast(g, timer) << endl;
     // cout << "MST_Boruvka: " << MST_Boruvka(g, timer) << endl;
 
-    return {type, n, m, MST_Kruskal(g, timer), MST_PrimSlow(g, timer), MST_PrimFast(g, timer), MST_Boruvka(g, timer)};
+    return {type, n, m, MST_Kruskal(g, timer, 1000), MST_PrimSlow(g, timer, 1000), MST_PrimFast(g, timer, 1000), MST_Boruvka(g, timer, 1000)};
 }
 
 int main() {

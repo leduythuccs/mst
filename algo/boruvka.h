@@ -75,9 +75,10 @@ long long _MST_Boruvka(const Graph& g) {
 }
 
 
-long long MST_Boruvka(const Graph& g, Timer &timer) {
+long long MST_Boruvka(const Graph& g, Timer &timer, int t = 1) {
     timer.start();
-    _MST_Boruvka(g);
-    return timer.getRunningTime();
+    for (int i = 1; i <= t; ++i)
+        _MST_Boruvka(g);
+    return timer.getRunningTime() / t;
 }
 #endif
